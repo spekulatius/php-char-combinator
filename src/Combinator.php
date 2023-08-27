@@ -39,7 +39,7 @@ class Combinator
         }
 
         foreach ($characters as $char) {
-            $this->generateCombinationsRecursive($combinations, $characters, $currentCombination . $char, $length - 1);
+            $this->generateCombinationsRecursive($combinations, $characters, $currentCombination.$char, $length - 1);
         }
     }
 }
