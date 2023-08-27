@@ -25,6 +25,23 @@ class Combinator
     }
 
     /**
+     * @param  array<string>  $combinations
+     * @param  array<string>  $characters
+     */
+    protected function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, int $length): void
+    {
+        if ($length === 0) {
+            $combinations[] = $currentCombination;
+
+            return;
+        }
+
+        foreach ($characters as $char) {
+            $this->generateCombinationsRecursive($combinations, $characters, $currentCombination.$char, $length - 1);
+        }
+    }
+
+    /**
      * One possible provider of data for the list.
      *
      * @return string[]
@@ -57,22 +74,5 @@ class Combinator
         }
 
         return $nonAlphanumericChars;
-    }
-
-    /**
-     * @param  array<string>  $combinations
-     * @param  array<string>  $characters
-     */
-    protected function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, int $length): void
-    {
-        if ($length === 0) {
-            $combinations[] = $currentCombination;
-
-            return;
-        }
-
-        foreach ($characters as $char) {
-            $this->generateCombinationsRecursive($combinations, $characters, $currentCombination.$char, $length - 1);
-        }
     }
 }
