@@ -7,16 +7,16 @@ class Combinator
     /**
      * Creates an array of all possible combinations with a certain length range.
      *
-     * @param array<string> $chars
+     * @param array<string> $characters
      */
-    public function generateCombinations(array $chars, int $startLevels, int $endLevels): array
+    public function generateCombinations(array $characters, int $startLevels, int $endLevels): array
     {
         // Initialize an array to store the generated combinations
         $combinations = [];
 
         // Generate combinations for each length from $startLevels to $endLevels
         for ($length = $startLevels; $length <= $endLevels; $length++) {
-            $this->generateCombinationsRecursive($combinations, $chars, '', $length);
+            $this->generateCombinationsRecursive($combinations, $characters, '', $length);
         }
 
         // Return the generated combinations
