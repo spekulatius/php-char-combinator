@@ -5,7 +5,7 @@ use Spekulatius\PHPCharCombinator\Combinator;
 it('generates combinations of lengths 1 to 3', function () {
     $combinator = new Combinator();
     $combinations = $combinator->generateCombinations(
-        $combinator->generateAsciiChars(),
+        $combinator->prepareAsciiChars(),
         1,
         3
     );
@@ -25,7 +25,7 @@ it('generates combinations of lengths 1 to 3', function () {
 it('generates combinations of lengths 4 and 5', function () {
     $combinator = new Combinator();
     $combinations = $combinator->generateCombinations(
-        $combinator->generateAsciiChars(),
+        $combinator->prepareAsciiChars(),
         4,
         5
     );
@@ -45,7 +45,7 @@ it('generates combinations of lengths 4 and 5', function () {
 it('generates empty combinations when startLevels is greater than endLevels', function () {
     $combinator = new Combinator();
     $combinations = $combinator->generateCombinations(
-        $combinator->generateAsciiChars(),
+        $combinator->prepareAsciiChars(),
         3,
         2
     );

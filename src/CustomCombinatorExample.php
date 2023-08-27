@@ -9,7 +9,7 @@ final class CustomCombinatorExample extends Combinator
      *
      * @return string[]
      */
-    protected function generateAsciiChars(): array
+    protected function prepareAsciiChars(): array
     {
         /**
          * Here you could simply return your array or load from a file:

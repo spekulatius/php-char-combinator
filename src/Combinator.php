@@ -29,7 +29,7 @@ class Combinator
      *
      * @return string[]
      */
-    public function generateAsciiChars(): array
+    public function prepareAsciiChars(): array
     {
         $asciiChars = [];
 
@@ -38,6 +38,25 @@ class Combinator
         }
 
         return $asciiChars;
+    }
+
+    /**
+     * Simplified Ascii list without without alpha-numeric-only entries
+     *
+     * @return string[]
+     */
+    public function prepareNonAlphanumericAsciiChars(): array
+    {
+        $nonAlphanumericChars = [];
+
+        for ($i = 0; $i <= 127; $i++) {
+            $char = chr($i);
+            if (!ctype_alnum($char)) {
+                $nonAlphanumericChars[] = $char;
+            }
+        }
+
+        return $nonAlphanumericChars;
     }
 
     /**
