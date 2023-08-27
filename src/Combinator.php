@@ -4,13 +4,11 @@ namespace Spekulatius\PHPCharCombinator;
 
 class Combinator
 {
-    public function generateCombinations($startLevels, $endLevels)
+    public function generateCombinations($chars, $startLevels, $endLevels)
     {
-        $asciiChars = $this->generateAsciiChars();
-
         $combinations = [];
         for ($length = $startLevels; $length <= $endLevels; $length++) {
-            $this->generateCombinationsRecursive($combinations, $asciiChars, '', $length);
+            $this->generateCombinationsRecursive($combinations, $chars, '', $length);
         }
 
         return $combinations;
