@@ -17,9 +17,11 @@ class Combinator
     }
 
     /**
+     * One possible provider of data for the list.
+     *
      * @return string[]
      */
-    private function generateAsciiChars(): array
+    protected function generateAsciiChars(): array
     {
         $asciiChars = [];
 
@@ -30,7 +32,7 @@ class Combinator
         return $asciiChars;
     }
 
-    private function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, $length): void
+    protected function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, $length): void
     {
         if ($length === 0) {
             $combinations[] = $currentCombination;
