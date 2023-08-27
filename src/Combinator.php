@@ -7,7 +7,7 @@ class Combinator
     /**
      * Creates an array of all possible combinations with a certain length range.
      *
-     * @param array<string> $characters
+     * @param  array<string>  $characters
      * @return array<string>
      */
     public function generateCombinations(array $characters, int $startLevels, int $endLevels): array
@@ -51,7 +51,7 @@ class Combinator
 
         for ($i = 0; $i <= 127; $i++) {
             $char = chr($i);
-            if (!ctype_alnum($char)) {
+            if (! ctype_alnum($char)) {
                 $nonAlphanumericChars[] = $char;
             }
         }
@@ -60,8 +60,8 @@ class Combinator
     }
 
     /**
-     * @param array<string> $combinations
-     * @param array<string> $characters
+     * @param  array<string>  $combinations
+     * @param  array<string>  $characters
      */
     protected function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, int $length): void
     {
