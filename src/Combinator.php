@@ -16,7 +16,10 @@ class Combinator
         return $combinations;
     }
 
-    private function generateAsciiChars()
+    /**
+     * @return string[]
+     */
+    private function generateAsciiChars(): array
     {
         $asciiChars = [];
 
@@ -27,10 +30,11 @@ class Combinator
         return $asciiChars;
     }
 
-    private function generateCombinationsRecursive(&$combinations, $characters, $currentCombination, $length)
+    private function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, $length): void
     {
         if ($length === 0) {
             $combinations[] = $currentCombination;
+
             return;
         }
 
