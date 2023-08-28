@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 require __DIR__.'/vendor/autoload.php';
 
 use Spekulatius\PHPCharCombinator\Combinator;
@@ -35,7 +38,7 @@ foreach ($combinations as $index => $combination) {
 
     // End tracking
     $end = microtime(true);
-    $duration = round(($end - $start) * 1000000, 2);
+    $duration = round(($end - $start) * 1000, 2);
     $durations[] = $duration;
 
     // Tweak the threshold above.
@@ -49,7 +52,7 @@ foreach ($combinations as $index => $combination) {
         $averageDuration = round(array_sum($durations) / count($durations), 2);
 
         // Log the state.
-        echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} μs (total avg: {$averageDuration} μs, hits: ".count($result).")\n";
+        echo '['.date('Y-m-d H:i:s')."] Test #{$index} \"{$combination}\": {$duration} ms (total avg: {$averageDuration} ms, hits: ".count($result).")\n";
 
         // Write a temp version
         arsort($result);

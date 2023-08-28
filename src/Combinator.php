@@ -28,7 +28,7 @@ class Combinator
      * @param  array<string>  $combinations
      * @param  array<string>  $characters
      */
-    protected function generateCombinationsRecursive(&$combinations, $characters, string $currentCombination, int $length): void
+    protected function generateCombinationsRecursive(array &$combinations, array $characters, string $currentCombination, int $length): void
     {
         if ($length === 0) {
             $combinations[] = $currentCombination;
