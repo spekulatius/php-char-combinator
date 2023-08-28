@@ -37,7 +37,7 @@ foreach ($combinations as $index => $combination) {
     $end = microtime(true);
     $duration = round(($end - $start) * 1000000, 2);
 
-    if ($index / 1000 === (int) ($index / 1000)) {
+    if ($index / 1000 === (int) ($index / 1000) || $index < 25) {
         echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} ms\n";
     }
 
