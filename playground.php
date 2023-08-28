@@ -19,6 +19,7 @@ $combinations = $combinator->generateCombinations(
 
 // Prep
 $channel = $argv[1];
+$reportingThreshold = 100000;
 $result = [];
 
 echo count($combinations)." combinations to test...\n";
@@ -30,6 +31,7 @@ foreach ($combinations as $index => $combination) {
     // Track time usage.
     $start = microtime(true);
 
+    // Place your tests here
 
     // End tracking
     $end = microtime(true);
@@ -39,7 +41,8 @@ foreach ($combinations as $index => $combination) {
         echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} ms\n";
     }
 
-    if ($duration > 100000) {
+    // Tweak the threshold above.
+    if ($duration > $reportingThreshold) {
         $result[$combination] = $duration;
     }
 }
