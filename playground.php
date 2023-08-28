@@ -21,7 +21,7 @@ $combinations = $combinator->generateCombinations(
 $channel = $argv[1];
 $result = [];
 
-echo count($combinations) . " combinations to test...\n";
+echo count($combinations)." combinations to test...\n";
 
 foreach ($combinations as $index => $combination) {
     // Create the complete string to work with.
@@ -33,11 +33,15 @@ foreach ($combinations as $index => $combination) {
 
     // End tracking
     $end = microtime(true);
-    $duration = round(($end - $start)*1000000, 2);
+    $duration = round(($end - $start) * 1000000, 2);
 
-    if ($index / 1000 === (int) ($index / 1000)) echo "Test #{$index}: {$duration} ms\n";
+    if ($index / 1000 === (int) ($index / 1000)) {
+        echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} ms\n";
+    }
 
-    if ($duration > 100000) $result[$combination] = $duration;
+    if ($duration > 100000) {
+        $result[$combination] = $duration;
+    }
 }
 
-file_put_contents('./' . $channel . '.json', json_encode($result, JSON_PRETTY_PRINT));
+file_put_contents('./'.$channel.'.json', json_encode($result, JSON_PRETTY_PRINT));
