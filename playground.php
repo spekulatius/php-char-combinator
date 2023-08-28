@@ -19,7 +19,7 @@ $combinations = $combinator->generateCombinations(
 
 // Prep
 $channel = $argv[1];
-$reportingThreshold = 100000;
+$reportingThreshold = $argv[2];
 $result = [];
 
 echo count($combinations)." combinations to test...\n";
@@ -36,15 +36,27 @@ foreach ($combinations as $index => $combination) {
     // End tracking
     $end = microtime(true);
     $duration = round(($end - $start) * 1000000, 2);
-
-    if ($index / 1000 === (int) ($index / 1000) || $index < 25) {
-        echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} ms\n";
-    }
+    $durations[] = $duration;
 
     // Tweak the threshold above.
     if ($duration > $reportingThreshold) {
         $result[$combination] = $duration;
     }
+
+    // Save and report once in a while.
+    if ($index / 1000 === (int) ($index / 1000) || $index < 1000 && $index / 10 === (int) ($index / 10)) {
+        // Calc the average duration
+        $averageDuration = round(array_sum($durations) / count($durations), 2);
+
+        // Log the state.
+        echo '['.date('Y-m-d H:i:s')."] Test #{$index}: {$duration} μs (total avg: {$averageDuration} μs, hits: ".count($result).")\n";
+
+        // Write a temp version
+        arsort($result);
+        file_put_contents('./'.$channel.'-temp.json', json_encode($result, JSON_PRETTY_PRINT));
+    }
 }
 
+// Write the final result.
+unlink('./'.$channel.'-temp.json');
 file_put_contents('./'.$channel.'.json', json_encode($result, JSON_PRETTY_PRINT));
